@@ -102,6 +102,42 @@
           }
         }
       }
+    },
+    "ngx-expandable-tree-list": {
+      "projectType": "library",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/ngx-expandable-tree-list",
+      "sourceRoot": "projects/ngx-expandable-tree-list/src",
+      "prefix": "ngx-etl",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/ngx-expandable-tree-list/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngx-expandable-tree-list/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ngx-expandable-tree-list/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-expandable-tree-list/src/test.ts",
+            "tsConfig": "projects/ngx-expandable-tree-list/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-expandable-tree-list/karma.conf.js"
+          }
+        }
+      }
     }
   }
 }
