@@ -1,0 +1,14 @@
+.vh-70 {
+  height: 70vh;
+}
+
+.hidden-input {
+  width: calc(100% - 8px);
+  border-color: transparent;
+  height: 40px;
+  background-color: transparent;
+
+  &:focus {
+    background-color: white;
+  }
+}

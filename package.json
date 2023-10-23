@@ -11,6 +11,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^16.2.7",
+    "@angular/cdk": "^16.2.9",
     "@angular/common": "^16.2.7",
     "@angular/compiler": "^16.2.7",
     "@angular/core": "^16.2.7",
@@ -18,6 +19,7 @@
     "@angular/platform-browser": "^16.2.7",
     "@angular/platform-browser-dynamic": "^16.2.7",
     "@angular/router": "^16.2.7",
+    "ngx-expandable-tree-list": "file:./projects/ngx-expandable-tree-list",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.1",
     "zone.js": "~0.13.3"
