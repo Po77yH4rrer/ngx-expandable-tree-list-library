@@ -1,20 +1,40 @@
-<div class="etl-expandable-tree-list-container" [class.etl-elevated]="config?.listElevated">
+<div
+  class="etl-expandable-tree-list-container"
+  [class.etl-elevated]="config?.listElevated"
+>
   <cdk-virtual-scroll-viewport [itemSize]="itemSize">
     <table class="etl-expandable-tree-list">
-      <thead *ngIf="!config?.headerOptions?.hideListHeader" class="etl-expandable-tree-head">
-        <tr [style.top]="config?.headerOptions?.stickyHeader ? invertedScrollTranslation : 0"
-          [class.etl-sticky-header]="config?.headerOptions?.stickyHeader" class="etl-expandable-tree-head-row">
-          <th [ngxEtlResize]="!config?.headerOptions?.preventResizing" [index]="0" *ngIf="!config?.hideIndexColumn">
-          </th>
-          <th *ngFor="let column of config?.columns; let colIndex = index"
-            [ngxEtlResize]="!config?.headerOptions?.preventResizing" [index]="colIndex + 1">
+      <thead
+        *ngIf="!config?.headerOptions?.hideListHeader"
+        class="etl-expandable-tree-head"
+      >
+        <tr
+          [style.top]="
+            config?.headerOptions?.stickyHeader ? invertedScrollTranslation : 0
+          "
+          [class.etl-sticky-header]="config?.headerOptions?.stickyHeader"
+          class="etl-expandable-tree-head-row"
+        >
+          <th
+            [ngxEtlResize]="!config?.headerOptions?.preventResizing"
+            [index]="0"
+            *ngIf="!config?.hideIndexColumn"
+          ></th>
+          <th
+            *ngFor="let column of config?.columns; let colIndex = index"
+            [ngxEtlResize]="!config?.headerOptions?.preventResizing"
+            [index]="colIndex + 1"
+          >
             {{ column.label }}
           </th>
         </tr>
       </thead>
       <tbody>
-        <ng-container *cdkVirtualFor=" let item of flatDataSource" [ngTemplateOutlet]="newChildItem"
-          [ngTemplateOutletContext]="{ $implicit: item }">
+        <ng-container
+          *cdkVirtualFor="let item of flatDataSource"
+          [ngTemplateOutlet]="newChildItem"
+          [ngTemplateOutletContext]="{ $implicit: item }"
+        >
         </ng-container>
       </tbody>
     </table>
@@ -22,21 +42,37 @@
 </div>
 
 <ng-template #newChildItem let-item>
-  <tr id="etl-data-row" *ngIf="!isChildOfCollapsedElement(item.parentIndex)" class="etl-expandable-tree-data-row"
-    [class.etl-striped-colors]="config?.rowOptions?.stripedColors">
-    <td *ngIf="!config?.hideIndexColumn" class="dynamic-index-padding"
-      [class.prevent-collapse]="config?.preventCollapse" [style]="'--etl-list-item-depth:' + (item.depth * 3)">
+  <tr
+    id="etl-data-row"
+    *ngIf="!isChildOfCollapsedElement(item.parentIndex)"
+    class="etl-expandable-tree-data-row"
+    [class.etl-striped-colors]="config?.rowOptions?.stripedColors"
+  >
+    <td
+      *ngIf="!config?.hideIndexColumn"
+      class="dynamic-index-padding"
+      [class.prevent-collapse]="config?.preventCollapse"
+      [style]="'--etl-list-item-depth:' + item.depth * 3"
+    >
       <ng-container *ngIf="item.hasChildren && !config?.preventCollapse">
         <button class="btn-collapse" (click)="toggleCollapseState(item.index)">
           <img
-            [src]="collapsed[item.index] ? 'assets/icons/angle-right-solid.svg' : 'assets/icons/angle-down-solid.svg'">
+            [src]="
+              collapsed[item.index]
+                ? 'assets/icons/angle-right-solid.svg'
+                : 'assets/icons/angle-down-solid.svg'
+            "
+          />
         </button>
       </ng-container>
       {{ item.index }}
     </td>
 
     <td *ngFor="let column of config?.columns">
-      <ng-container [ngTemplateOutlet]="column.cellTemplate" [ngTemplateOutletContext]="{ $implicit: item }">
+      <ng-container
+        [ngTemplateOutlet]="column.cellTemplate"
+        [ngTemplateOutletContext]="{ $implicit: item }"
+      >
       </ng-container>
     </td>
   </tr>

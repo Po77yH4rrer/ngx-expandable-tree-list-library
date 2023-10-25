@@ -1,6 +1,11 @@
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { Component, Input, ViewChild } from '@angular/core';
-import { NgxExpandableFlatListItem, NgxExpandableListConfiguration, NgxExpandableListData, NgxExpandableListItem } from '../../models';
+import {
+  NgxExpandableFlatListItem,
+  NgxExpandableListConfiguration,
+  NgxExpandableListData,
+  NgxExpandableListItem,
+} from '../../models';
 
 @Component({
   selector: 'ngx-etl-list',
@@ -8,7 +13,8 @@ import { NgxExpandableFlatListItem, NgxExpandableListConfiguration, NgxExpandabl
   styleUrls: ['./list.component.scss'],
 })
 export class ListComponent {
-  @ViewChild(CdkVirtualScrollViewport, { static: false }) public viewPort?: CdkVirtualScrollViewport;
+  @ViewChild(CdkVirtualScrollViewport, { static: false })
+  public viewPort?: CdkVirtualScrollViewport;
 
   @Input()
   public get data(): NgxExpandableListData<unknown> {
@@ -31,7 +37,7 @@ export class ListComponent {
   }
 
   public get itemSize(): number {
-    return document.getElementById('etl-data-row')?.clientHeight || 1;
+    return document.getElementById('etl-data-row')?.clientHeight || 48;
   }
 
   public collapsed: { [index: string]: boolean } = {};
@@ -58,20 +64,35 @@ export class ListComponent {
 
     const collapsedKeys = Object.keys(this.collapsed);
 
-    return Boolean(collapsedKeys.find(x => index.toString() == x || index.toString().startsWith(`${x}.`)));
+    return Boolean(
+      collapsedKeys.find(
+        (x) => index.toString() == x || index.toString().startsWith(`${x}.`)
+      )
+    );
   }
 
   private initializeDatasource() {
     const copiedData = [...this.data];
 
     copiedData.forEach((item, index) => {
-      this.flatDataSource.push(this.createFlatItem(item, (index + 1).toString()));
+      this.flatDataSource.push(
+        this.createFlatItem(item, (index + 1).toString())
+      );
     });
 
-    this.flatDataSource.sort((a, b) => a.index.localeCompare(b.index, undefined, { numeric: true, sensitivity: 'base' }));
+    this.flatDataSource.sort((a, b) =>
+      a.index.localeCompare(b.index, undefined, {
+        numeric: true,
+        sensitivity: 'base',
+      })
+    );
   }
 
-  private createFlatItem(item: NgxExpandableListItem<unknown>, index: string, parentIndex?: string): NgxExpandableFlatListItem {
+  private createFlatItem(
+    item: NgxExpandableListItem<unknown>,
+    index: string,
+    parentIndex?: string
+  ): NgxExpandableFlatListItem {
     const itemIndex = parentIndex ? parentIndex + '.' + index : index;
 
     item.children?.forEach((child, i) => {
@@ -89,7 +110,7 @@ export class ListComponent {
       index: itemIndex,
       parentIndex: parentIndex,
       hasChildren: hasChildren,
-      depth: [...itemIndex].filter(char => char === '.')?.length,
+      depth: [...itemIndex].filter((char) => char === '.')?.length,
     };
   }
 }
