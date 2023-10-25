@@ -1,0 +1,21 @@
+name: Unit Tests
+
+on: push
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '16'
+  
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Tests
+        run: ng test
