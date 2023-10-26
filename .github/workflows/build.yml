@@ -1,9 +1,9 @@
-name: Build Library 
+name: Build and publish library 
 
 on: 
   push:
     branches:
-      - 'build-lib-action'
+      - 'builld-lib-action'
 
 jobs:
   build-lib:
@@ -26,3 +26,9 @@ jobs:
       - name: Run Build
         working-directory: ./projects/ngx-expandable-tree-list
         run: ng build
+      
+      - name: Publish Package
+        working-directory: ./projects/ngx-expandable-tree-list
+        env:
+          NODE_AUTH_TOKEN: ${{ secret.GITHUB_TOKEN }}
+        run: npm publish
