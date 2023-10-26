@@ -24,4 +24,4 @@ jobs:
         run: npm install
 
       - name: Run Tests
-        run: ng test
+        run: ng test ngx-expandable-tree-list --watch=false --browsers=ChromeHeadless
