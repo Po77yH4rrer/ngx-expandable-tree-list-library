@@ -1,0 +1,28 @@
+name: Build Library 
+
+on: 
+  push:
+    branches:
+      - 'builld-lib-action'
+
+jobs:
+  build-lib:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '16'
+          
+      - name: Install Angular CLI
+        run: npm install -g @angular/cli
+
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Build
+        working-directory: ./projects/ngx-expandable-tree-list
+        run: ng build
