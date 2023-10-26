@@ -3,7 +3,7 @@ name: Build and publish library
 on: 
   push:
     branches:
-      - 'builld-lib-action'
+      - 'build-lib-action'
 
 jobs:
   build-lib:
