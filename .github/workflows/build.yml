@@ -31,4 +31,4 @@ jobs:
         working-directory: ./projects/ngx-expandable-tree-list
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
-        run: npm publish --access restricted
+        run: npm publish

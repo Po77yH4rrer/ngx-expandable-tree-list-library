@@ -1,5 +1,5 @@
 {
-  "name": "@jontok/ngx-expandable-tree-list",
+  "name": "ngx-expandable-tree-list",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/cdk": "^16.2.9",
