@@ -27,9 +27,9 @@ jobs:
         run: npm install
 
       - name: Run build
-        working_directory: ./projects/ngx-expandable-tree-list
+        working-directory: ./projects/ngx-expandable-tree-list
         run: ng build
       
       - name: Test install
-        working_directory: ./dist
+        working-directory: ./dist
         run: npm install ./ngx-expandable-tree-list
