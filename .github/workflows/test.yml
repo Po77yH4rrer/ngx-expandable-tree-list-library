@@ -2,8 +2,14 @@ name: Tests install
 
 on: 
   push:
-    Branches:
-     - 'unit-tests-action'
+    paths-ignore:
+        - ".github/workflows/**"
+        - README.md
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - closed
 
 jobs:
   run-tests:
