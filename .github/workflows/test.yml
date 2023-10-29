@@ -1,9 +1,9 @@
-name: Unit Tests
+name: Tests install
 
 on: 
   push:
-    branches:
-      - 'unit-tests-action'
+    Branches:
+     - 'unit-tests-action'
 
 jobs:
   run-tests:
@@ -26,5 +26,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run Tests
-        run: ng test ngx-expandable-tree-list --watch=false --browsers=ChromeHeadless
+      - name: Run build
+        working_directory: ./projects/ngx-expandable-tree-list
+        run: ng build
+      
+      - name: Test install
+        working_directory: ./dist
+        run: npm install ./ngx-expandable-tree-list
