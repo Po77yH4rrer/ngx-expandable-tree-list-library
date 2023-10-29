@@ -4,7 +4,7 @@ on:
   push:
     paths-ignore:
         - ".github/workflows/**"
-        - README.md
+        - "**/README.md"
   pull_request:
     types:
       - opened
