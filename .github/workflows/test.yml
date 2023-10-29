@@ -17,9 +17,6 @@ jobs:
       - name: Install Angular CLI
         run: npm install -g @angular/cli
 
-      - name: Setup Chrome
-        uses: browser-actions/setup-chrome@v1.2.3
-
       - name: Checkout
         uses: actions/checkout@v4
       
