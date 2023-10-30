@@ -1,0 +1,87 @@
+name: Tests install
+
+on: 
+  push:
+    paths-ignore:
+        - "**/README.md"
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - closed
+
+jobs:
+  tests-node-16:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '16'
+          
+      - name: Install Angular CLI
+        run: npm install -g @angular/cli
+
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run build
+        working-directory: ./projects/ngx-expandable-tree-list
+        run: ng build
+      
+      - name: Test install
+        working-directory: ./dist
+        run: npm install ./ngx-expandable-tree-list
+  
+  tests-node-18:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          
+      - name: Install Angular CLI
+        run: npm install -g @angular/cli
+
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run build
+        working-directory: ./projects/ngx-expandable-tree-list
+        run: ng build
+      
+      - name: Test install
+        working-directory: ./dist
+        run: npm install ./ngx-expandable-tree-list
+  
+  tests-node-20:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: Install Angular CLI
+        run: npm install -g @angular/cli
+
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run build
+        working-directory: ./projects/ngx-expandable-tree-list
+        run: ng build
+      
+      - name: Test install
+        working-directory: ./dist
+        run: npm install ./ngx-expandable-tree-list
